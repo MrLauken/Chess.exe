@@ -218,7 +218,7 @@ def black_pieces(screen):
     display_surface = screen
 
     #black rook 1
-    Black_rook1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_tårn.png")
+    Black_rook1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_tårn.png").convert()
     Black_rook1 = pygame.transform.scale(Black_rook1, (n, n))
     display_surface.blit(Black_rook1, (30+n, 30+n))
 
@@ -280,24 +280,28 @@ def black_pieces(screen):
     #black pawn 5
     Black_pawn5 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn5 = pygame.transform.scale(Black_pawn1, (n, n))
-    display_surface.blit(Black_pawn1, (30+5*n, 30+2*n))
+    display_surface.blit(Black_pawn5, (30+5*n, 30+2*n))
 
     #black pawn 6
     Black_pawn6 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn6 = pygame.transform.scale(Black_pawn1, (n, n))
-    display_surface.blit(Black_pawn1, (30+6*n, 30+2*n))
+    display_surface.blit(Black_pawn6, (30+6*n, 30+2*n))
 
     #black pawn 7
     Black_pawn7 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn7 = pygame.transform.scale(Black_pawn7, (n, n))
-    display_surface.blit(Black_pawn1, (30+7*n, 30+2*n))
+    display_surface.blit(Black_pawn7, (30+7*n, 30+2*n))
 
     #black pawn 8
     Black_pawn8 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn8 = pygame.transform.scale(Black_pawn8, (n, n))
-    display_surface.blit(Black_pawn1, (30+8*n, 30+2*n))
+    display_surface.blit(Black_pawn8, (30+8*n, 30+2*n))
 
 
+
+    
+
+    
 
              
 
@@ -323,8 +327,13 @@ while running:
     for event in pygame.event.get():
 
         if event.type == pygame.QUIT:
-
             running = False
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            Lastclick = event.pos
+            print(Lastclick)
+           # if Black_pawn1.get_rect().collidepoint(Lastclick):
+        
 
 
 pygame.quit()

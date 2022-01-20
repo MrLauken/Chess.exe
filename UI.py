@@ -1,6 +1,8 @@
 import pygame
 from pygame.locals import *
 
+k=0
+Lastclick= 0
 
 def Chessboard(screen):
     n=43.5
@@ -128,7 +130,7 @@ def Chessboard(screen):
 
 
 
-def white_pieces(screen):
+def white_pieces(screen, k, Lastclick):
     n=43.5
     display_surface = screen
 
@@ -213,12 +215,21 @@ def white_pieces(screen):
     White_pawn8 = pygame.transform.scale(White_pawn8, (n, n))
     display_surface.blit(White_pawn8, (30+8*n, 30+7*n))
 
-def black_pieces(screen):
+
+    piecelist = [White_rook1, White_rook2, White_horse1]
+    if k == 1:
+        for x in piecelist:
+            print(x)
+            if x.get_rect().collidepoint(Lastclick):
+                return True
+
+
+def black_pieces(screen, Lastclick, k):
     n=43.5
     display_surface = screen
 
     #black rook 1
-    Black_rook1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_tårn.png").convert()
+    Black_rook1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_tårn.png")
     Black_rook1 = pygame.transform.scale(Black_rook1, (n, n))
     display_surface.blit(Black_rook1, (30+n, 30+n))
 
@@ -301,7 +312,7 @@ def black_pieces(screen):
 
     
 
-    
+Piecelib = ["White_queen", ]
 
              
 
@@ -318,8 +329,8 @@ pygame.display.set_caption('Chess.exe')
 running = True
 
 Chessboard(screen)
-white_pieces(screen)
-black_pieces(screen)
+white_pieces(screen, k, Lastclick)
+black_pieces(screen, k, Lastclick)
 pygame.display.flip()
 
 while running:
@@ -332,6 +343,9 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             Lastclick = event.pos
             print(Lastclick)
+            k=1
+            if white_pieces(screen,Lastclick, 1):
+                print("tRUE")
            # if Black_pawn1.get_rect().collidepoint(Lastclick):
         
 

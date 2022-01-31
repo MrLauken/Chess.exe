@@ -1,44 +1,99 @@
 import pygame
 from pygame.locals import *
 n=43.5
+turn=1
 Lastclick= 0
+
+#initializerer poisisjon for hvite brikker
 Wrook1pos = (30+n, 30+8*n)
 Wrook2pos = (30+8*n, 30+8*n)
 Whorse1pos = (30+2*n, 30+8*n)
 Whorse2pos = (30+7*n, 30+8*n)
 Wbishop1pos = (30+3*n, 30+8*n)
+Wbishop2pos = (30+6*n, 30+8*n)
+WqueenPos = (30+4*n, 30+8*n)
+WkingPos = (30+5*n, 30+8*n)
+Wpawn1 = (30+n, 30+7*n)
+Wpawn2= (30+2*n, 30+7*n)
+Wpawn3= (30+3*n, 30+7*n)
+Wpawn4= (30+4*n, 30+7*n)
+Wpawn5= (30+5*n, 30+7*n)
+Wpawn6= (30+6*n, 30+7*n)
+Wpawn7= (30+7*n, 30+7*n)
+Wpawn8= (30+8*n, 30+7*n)
+
+#initializerer poisisjon for svarte brikker
+Brook1pos = (30+n, 30+n)
+Brook2pos = (30+8*n, 30+n)
+Bhorse1pos = (30+2*n, 30+n)
+Bhorse2pos = (30+7*n, 30+n)
+Bbishop1pos = (30+3*n, 30+n)
+Bbishop2pos = (30+6*n, 30+n)
+BqueenPos = (30+4*n, 30+n)
+BkingPos = (30+5*n, 30+n)
+Bpawn1 = (30+n, 30+2*n)
+Bpawn2= (30+2*n, 30+2*n)
+Bpawn3= (30+3*n, 30+2*n)
+Bpawn4= (30+4*n, 30+2*n)
+Bpawn5= (30+5*n, 30+2*n)
+Bpawn6= (30+6*n, 30+2*n)
+Bpawn7= (30+7*n, 30+2*n)
+Bpawn8= (30+8*n, 30+2*n)
+
+
+Hvitliste = [Wrook1pos, Wrook2pos, Whorse1pos, Whorse2pos, Wbishop1pos, Wbishop2pos, WqueenPos, WkingPos, Wpawn1, 
+Wpawn2, Wpawn3, Wpawn4, Wpawn5, Wpawn6, Wpawn7, Wpawn8]
+
+#initializerer poisisjon for svarte brikker
+Brook1pos = (30+n, 30+n)
+Brook2pos = (30+8*n, 30+n)
+Bhorse1pos = (30+2*n, 30+n)
+Bhorse2pos = (30+7*n, 30+n)
+Bbishop1pos = (30+3*n, 30+n)
+Bbishop2pos = (30+6*n, 30+n)
+BqueenPos = (30+4*n, 30+n)
+BkingPos = (30+5*n, 30+n)
+Bpawn1 = (30+n, 30+2*n)
+Bpawn2= (30+2*n, 30+2*n)
+Bpawn3= (30+3*n, 30+2*n)
+Bpawn4= (30+4*n, 30+2*n)
+Bpawn5= (30+5*n, 30+2*n)
+Bpawn6= (30+6*n, 30+2*n)
+Bpawn7= (30+7*n, 30+2*n)
+Bpawn8= (30+8*n, 30+2*n)
+
 
 def Chessboard(screen):
     n=43.5
     screen.fill((255, 255, 255))
     pygame.draw.rect(screen, (245, 220, 170), pygame.Rect(30, 30, 435, 435))
     #Rad 8
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+n, 30+n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+2*n, 30+n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+3*n, 30+n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+4*n, 30+n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+5*n, 30+n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+6*n, 30+n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+7*n, 30+n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+8*n, 30+n, n, n))
+    a8= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+n, 30+n, n, n))
+    b8= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+2*n, 30+n, n, n))
+    c8= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+3*n, 30+n, n, n))
+    d8= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+4*n, 30+n, n, n))
+    e8= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+5*n, 30+n, n, n))
+    f8= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+6*n, 30+n, n, n))
+    g8= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+7*n, 30+n, n, n))
+    h8= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+8*n, 30+n, n, n))
     #Rad 7
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+n, 30+2*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+2*n, 30+2*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+3*n, 30+2*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+4*n, 30+2*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+5*n, 30+2*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+6*n, 30+2*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+7*n, 30+2*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+8*n, 30+2*n, n, n))
+    a7= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+n, 30+2*n, n, n))
+    b7= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+2*n, 30+2*n, n, n))
+    c7= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+3*n, 30+2*n, n, n))
+    d7= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+4*n, 30+2*n, n, n))
+    e7= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+5*n, 30+2*n, n, n))
+    f7= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+6*n, 30+2*n, n, n))
+    g7= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+7*n, 30+2*n, n, n))
+    h7= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+8*n, 30+2*n, n, n))
     #Rad 6
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+n, 30+3*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+2*n, 30+3*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+3*n, 30+3*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+4*n, 30+3*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+5*n, 30+3*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+6*n, 30+3*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+7*n, 30+3*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+8*n, 30+3*n, n, n))
+    a6= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+n, 30+3*n, n, n))
+    b6= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+2*n, 30+3*n, n, n))
+    c6= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+3*n, 30+3*n, n, n))
+    d6= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+4*n, 30+3*n, n, n))
+    e6= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+5*n, 30+3*n, n, n))
+    f6= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+6*n, 30+3*n, n, n))
+    g6= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+7*n, 30+3*n, n, n))
+    h6= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+8*n, 30+3*n, n, n))
     #Rad 5
     a5= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+n, 30+4*n, n, n))
     b5= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+2*n, 30+4*n, n, n))
@@ -49,41 +104,41 @@ def Chessboard(screen):
     g5=pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+7*n, 30+4*n, n, n))
     h5=pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+8*n, 30+4*n, n, n))
     #Rad 4
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+n, 30+5*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+2*n, 30+5*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+3*n, 30+5*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+4*n, 30+5*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+5*n, 30+5*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+6*n, 30+5*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+7*n, 30+5*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+8*n, 30+5*n, n, n))
+    a4= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+n, 30+5*n, n, n))
+    b4= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+2*n, 30+5*n, n, n))
+    c4= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+3*n, 30+5*n, n, n))
+    d4= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+4*n, 30+5*n, n, n))
+    e4= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+5*n, 30+5*n, n, n))
+    f4= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+6*n, 30+5*n, n, n))
+    g4= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+7*n, 30+5*n, n, n))
+    h4= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+8*n, 30+5*n, n, n))
     #Rad 3
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+n, 30+6*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+2*n, 30+6*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+3*n, 30+6*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+4*n, 30+6*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+5*n, 30+6*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+6*n, 30+6*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+7*n, 30+6*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+8*n, 30+6*n, n, n))
+    a3= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+n, 30+6*n, n, n))
+    b3= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+2*n, 30+6*n, n, n))
+    c3= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+3*n, 30+6*n, n, n))
+    d3= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+4*n, 30+6*n, n, n))
+    e3= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+5*n, 30+6*n, n, n))
+    f3= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+6*n, 30+6*n, n, n))
+    g3= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+7*n, 30+6*n, n, n))
+    h3= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+8*n, 30+6*n, n, n))
     #Rad 2
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+n, 30+7*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+2*n, 30+7*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+3*n, 30+7*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+4*n, 30+7*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+5*n, 30+7*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+6*n, 30+7*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+7*n, 30+7*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+8*n, 30+7*n, n, n))
+    a2= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+n, 30+7*n, n, n))
+    b2= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+2*n, 30+7*n, n, n))
+    c2= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+3*n, 30+7*n, n, n))
+    d2= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+4*n, 30+7*n, n, n))
+    e2= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+5*n, 30+7*n, n, n))
+    f2= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+6*n, 30+7*n, n, n))
+    g2= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+7*n, 30+7*n, n, n))
+    h2= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+8*n, 30+7*n, n, n))
     #Rad 1
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+n, 30+8*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+2*n, 30+8*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+3*n, 30+8*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+4*n, 30+8*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+5*n, 30+8*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+6*n, 30+8*n, n, n))
-    pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+7*n, 30+8*n, n, n))
-    pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+8*n, 30+8*n, n, n))
+    a1= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+n, 30+8*n, n, n))
+    b1= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+2*n, 30+8*n, n, n))
+    c1= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+3*n, 30+8*n, n, n))
+    d1= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+4*n, 30+8*n, n, n))
+    e1= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+5*n, 30+8*n, n, n))
+    f1= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+6*n, 30+8*n, n, n))
+    g1= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+7*n, 30+8*n, n, n))
+    h1= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+8*n, 30+8*n, n, n))
     #Lines
     pygame.draw.line(screen, (164, 126, 115), (30+n,30+n), (30+n,30+9*n), 4)
     pygame.draw.line(screen, (164, 126, 115), (30+n,30+n), (30+9*n,30+n), 4)
@@ -131,19 +186,16 @@ def Chessboard(screen):
     H = fontgrid.render('H', True, (164, 126, 115))
     display_surface.blit(H, (n*8+45, 10*n))
 
-    tiles = [a5,b5,c5,d5,e5,f5,g5,h5]
+    tiles = [a8,b8,c8,d8,e8,f8,g8,h8,a7,b7,c7,d7,e7,f7,g7,h7, a6,b6,c6,d6,e6,f6,g6,h6, a5,b5,c5,d5,e5,f5,g5,h5,
+    a4,b4,c4,d4,e4,f4,g4,h4, a3,b3,c3,d3,e3,f3,g3,h3,a2,b2,c2,d2,e2,f2,g2,h2,a1,b1,c1,d1,e1,f1,g1,h1]
     return tiles
 
 
 
 
-def white_pieces(screen, Wrook1pos):
+def white_pieces(screen):
     n=43.5
-    #PiecesWhere
-    Whorse1pos = (30+2*n, 30+8*n)
-    Whorse2pos = (30+7*n, 30+8*n)
-    Wbishop1pos = (30+3*n, 30+8*n)
-
+    
     #white rook 1
     White_rook1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_tårn.png")
     White_rook1 = pygame.transform.scale(White_rook1, (n, n))
@@ -172,57 +224,59 @@ def white_pieces(screen, Wrook1pos):
     #White bishop 2
     White_bishop2 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_biskop.png")
     White_bishop2 = pygame.transform.scale(White_bishop2, (n, n))
-    White_bishop2Pos= screen.blit(White_bishop2, (30+6*n, 30+8*n))
+    White_bishop2Pos= screen.blit(White_bishop2, Wbishop2pos)
 
     #White queen
     White_queen = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_dronning.png")
     White_queen = pygame.transform.scale(White_queen, (n, n))
-    White_queenPos= screen.blit(White_queen, (30+4*n, 30+8*n))
+    White_queenPos= screen.blit(White_queen, WqueenPos)
 
     #White king
     White_king = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_konge.png")
     White_king = pygame.transform.scale(White_king, (n, n))
-    White_kingPos= screen.blit(White_king, (30+5*n, 30+8*n))
+    White_kingPos= screen.blit(White_king, WkingPos)
+    
 
     #White pawn 1
     White_pawn1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_bonde.png")
     White_pawn1 = pygame.transform.scale(White_pawn1, (n, n))
-    White_pawn1Pos= screen.blit(White_pawn1, (30+n, 30+7*n))
-
+    White_pawn1Pos= screen.blit(White_pawn1, Wpawn1)
+    
    #White pawn 2
     White_pawn2 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_bonde.png")
     White_pawn2 = pygame.transform.scale(White_pawn2, (n, n))
-    White_pawn2Pos= screen.blit(White_pawn2, (30+2*n, 30+7*n))
+    White_pawn2Pos= screen.blit(White_pawn2, Wpawn2)
+    
 
     #White pawn 3
     White_pawn3 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_bonde.png")
     White_pawn3 = pygame.transform.scale(White_pawn3, (n, n))
-    White_pawn3Pos= screen.blit(White_pawn3, (30+3*n, 30+7*n))
+    White_pawn3Pos= screen.blit(White_pawn3, Wpawn3)
 
     #White pawn 4
     White_pawn4 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_bonde.png")
     White_pawn4 = pygame.transform.scale(White_pawn4, (n, n))
-    White_pawn4Pos= screen.blit(White_pawn4, (30+4*n, 30+7*n))
+    White_pawn4Pos= screen.blit(White_pawn4, Wpawn4)
 
     #White pawn 5
     White_pawn5 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_bonde.png")
     White_pawn5 = pygame.transform.scale(White_pawn5, (n, n))
-    White_pawn5Pos= screen.blit(White_pawn5, (30+5*n, 30+7*n))
+    White_pawn5Pos= screen.blit(White_pawn5, Wpawn5)
 
     #White pawn 6
     White_pawn6 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_bonde.png")
     White_pawn6 = pygame.transform.scale(White_pawn6, (n, n))
-    White_pawn6Pos= screen.blit(White_pawn6, (30+6*n, 30+7*n))
+    White_pawn6Pos= screen.blit(White_pawn6, Wpawn6)
 
     #White pawn 7
     White_pawn7 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_bonde.png")
     White_pawn7 = pygame.transform.scale(White_pawn7, (n, n))
-    White_pawn7Pos= screen.blit(White_pawn7, (30+7*n, 30+7*n))
+    White_pawn7Pos= screen.blit(White_pawn7, Wpawn7)
 
     #White pawn 8
     White_pawn8 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_bonde.png")
     White_pawn8 = pygame.transform.scale(White_pawn8, (n, n))
-    White_pawn8Pos= screen.blit(White_pawn8, (30+8*n, 30+7*n))
+    White_pawn8Pos= screen.blit(White_pawn8, Wpawn8)
 
 
     piecelist = [White_rook1Pos, White_rook2Pos, White_horse1Pos, White_pawn8Pos, White_pawn7Pos, White_pawn6Pos, White_pawn5Pos, White_pawn4Pos
@@ -237,88 +291,88 @@ def black_pieces(screen):
     #black rook 1
     Black_rook1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_tårn.png")
     Black_rook1 = pygame.transform.scale(Black_rook1, (n, n))
-    Black_rook1Pos= screen.blit(Black_rook1, (30+n, 30+n))
+    Black_rook1Pos= screen.blit(Black_rook1, Brook1pos)
 
     #black rook 2
     Black_rook2 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_tårn.png")
     Black_rook2 = pygame.transform.scale(Black_rook2, (n, n))
-    Black_rook2Pos= screen.blit(Black_rook2, (30+8*n, 30+n))
+    Black_rook2Pos= screen.blit(Black_rook2, Brook2pos)
 
     #black horse 1
     Black_horse1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_hest.png")
     Black_horse1 = pygame.transform.scale(Black_horse1, (n, n))
-    Black_horse1Pos= screen.blit(Black_horse1, (30+2*n, 30+n))
+    Black_horse1Pos= screen.blit(Black_horse1, Bhorse1pos)
 
     #black horse 2
     Black_horse2 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_hest.png")
     Black_horse2 = pygame.transform.scale(Black_horse2, (n, n))
-    Black_horse2Pos= screen.blit(Black_horse2, (30+7*n, 30+n))
+    Black_horse2Pos= screen.blit(Black_horse2, Bhorse2pos)
 
     #black bishop 1
     Black_bishop1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_biskop.png")
     Black_bishop1 = pygame.transform.scale(Black_bishop1, (n, n))
-    Black_bishop1Pos= screen.blit(Black_bishop1, (30+3*n, 30+n))
+    Black_bishop1Pos= screen.blit(Black_bishop1, Bbishop1pos)
 
     #black bishop 2
     Black_bishop2 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_biskop.png")
     Black_bishop2 = pygame.transform.scale(Black_bishop2, (n, n))
-    Black_bishop2Pos= screen.blit(Black_bishop2, (30+6*n, 30+n))
+    Black_bishop2Pos= screen.blit(Black_bishop2, Bbishop2pos)
 
     #black queen
     Black_queen = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_dronning.png")
     Black_queen = pygame.transform.scale(Black_queen, (n, n))
-    Black_queenPos= screen.blit(Black_queen, (30+4*n, 30+n))
+    Black_queenPos= screen.blit(Black_queen, BqueenPos)
 
     #black king
     Black_king = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_konge.png")
     Black_king = pygame.transform.scale(Black_king, (n, n))
-    Black_kingPos= screen.blit(Black_king, (30+5*n, 30+n))
+    Black_kingPos= screen.blit(Black_king, BkingPos)
 
     #black pawn 1
     Black_pawn1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn1 = pygame.transform.scale(Black_pawn1, (n, n))
-    Black_pawn1Pos= screen.blit(Black_pawn1, (30+n, 30+2*n))
+    Black_pawn1Pos= screen.blit(Black_pawn1, Bpawn1)
 
     #black pawn 2
     Black_pawn2 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn2 = pygame.transform.scale(Black_pawn2, (n, n))
-    Black_pawn2Pos= screen.blit(Black_pawn1, (30+2*n, 30+2*n))
+    Black_pawn2Pos= screen.blit(Black_pawn1, Bpawn2)
 
     #black pawn 3
     Black_pawn3 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn3 = pygame.transform.scale(Black_pawn1, (n, n))
-    Black_pawn3Pos= screen.blit(Black_pawn3, (30+3*n, 30+2*n))
+    Black_pawn3Pos= screen.blit(Black_pawn3, Bpawn3)
 
     #black pawn 4
     Black_pawn4 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn4 = pygame.transform.scale(Black_pawn1, (n, n))
-    Black_pawn4Pos= screen.blit(Black_pawn4, (30+4*n, 30+2*n))
+    Black_pawn4Pos= screen.blit(Black_pawn4, Bpawn4)
 
     #black pawn 5
     Black_pawn5 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn5 = pygame.transform.scale(Black_pawn1, (n, n))
-    Black_pawn5Pos= screen.blit(Black_pawn5, (30+5*n, 30+2*n))
+    Black_pawn5Pos= screen.blit(Black_pawn5, Bpawn5)
 
     #black pawn 6
     Black_pawn6 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn6 = pygame.transform.scale(Black_pawn1, (n, n))
-    Black_pawn6Pos= screen.blit(Black_pawn6, (30+6*n, 30+2*n))
+    Black_pawn6Pos= screen.blit(Black_pawn6, Bpawn6)
 
     #black pawn 7
     Black_pawn7 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn7 = pygame.transform.scale(Black_pawn7, (n, n))
-    Black_pawn7Pos= screen.blit(Black_pawn7, (30+7*n, 30+2*n))
+    Black_pawn7Pos= screen.blit(Black_pawn7, Bpawn7)
 
     #black pawn 8
     Black_pawn8 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn8 = pygame.transform.scale(Black_pawn8, (n, n))
-    Black_pawn8Pos= screen.blit(Black_pawn8, (30+8*n, 30+2*n))
+    Black_pawn8Pos= screen.blit(Black_pawn8, Bpawn8)
 
     piecelist = [Black_rook1Pos, Black_rook2Pos, Black_horse1Pos, Black_pawn8Pos, Black_pawn7Pos, Black_pawn6Pos, Black_pawn5Pos, Black_pawn4Pos
     , Black_pawn3Pos, Black_pawn2Pos, Black_pawn1Pos, Black_horse2Pos, Black_bishop1Pos, Black_bishop2Pos, Black_kingPos, Black_queenPos]
     return piecelist 
 
-def Repos(x):
+def HRepos(indeks):
     a=True
     while a:
         for something in pygame.event.get():
@@ -329,9 +383,11 @@ def Repos(x):
                 papa = something.pos
                 for x in Chessboard(screen):
                     if x.collidepoint(papa):
-                        Wrook1pos = papa
+                        for y in Hvitliste:
+                            if y.collidepoint(i):
+                                y= x
                         Chessboard(screen)
-                        white_pieces(screen, Wrook1pos)
+                        white_pieces(screen)
                         black_pieces(screen)
                         pygame.display.flip()
                         a=False
@@ -349,7 +405,7 @@ pygame.display.set_caption('Chess.exe')
 running = True
 
 Chessboard(screen)
-white_pieces(screen, Wrook1pos)
+white_pieces(screen)
 black_pieces(screen)
 pygame.display.flip()
 while running:
@@ -360,14 +416,17 @@ while running:
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             Lastclick = event.pos
-            pygame.event.clear()
-            for x in white_pieces(screen, Wrook1pos):
-                if x.collidepoint(Lastclick):
-                    Repos(x)
-
-            for x in black_pieces(screen):
-                if x.collidepoint(Lastclick):
-                    print("Black True")
+            if turn ==1:
+                for i in white_pieces(screen):
+                    if i.collidepoint(Lastclick):
+                        indeks = white_pieces(screen).index(i)
+                        HRepos(indeks)
+                        turn=2
+            if turn ==2:
+                for x in black_pieces(screen):
+                    if x.collidepoint(Lastclick):
+                        Repos(i)
+                        turn=1
     
             
            

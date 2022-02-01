@@ -4,6 +4,7 @@ n=43.5
 turn=1
 Lastclick= 0
 
+
 #initializerer poisisjon for hvite brikker
 Wrook1pos = (30+n, 30+8*n)
 Wrook2pos = (30+8*n, 30+8*n)
@@ -40,27 +41,16 @@ Bpawn6= (30+6*n, 30+2*n)
 Bpawn7= (30+7*n, 30+2*n)
 Bpawn8= (30+8*n, 30+2*n)
 
-
+#Liste med hvits posisjoner på brettet
 Hvitliste = [Wrook1pos, Wrook2pos, Whorse1pos, Whorse2pos, Wbishop1pos, Wbishop2pos, WqueenPos, WkingPos, Wpawn1, 
 Wpawn2, Wpawn3, Wpawn4, Wpawn5, Wpawn6, Wpawn7, Wpawn8]
 
-#initializerer poisisjon for svarte brikker
-Brook1pos = (30+n, 30+n)
-Brook2pos = (30+8*n, 30+n)
-Bhorse1pos = (30+2*n, 30+n)
-Bhorse2pos = (30+7*n, 30+n)
-Bbishop1pos = (30+3*n, 30+n)
-Bbishop2pos = (30+6*n, 30+n)
-BqueenPos = (30+4*n, 30+n)
-BkingPos = (30+5*n, 30+n)
-Bpawn1 = (30+n, 30+2*n)
-Bpawn2= (30+2*n, 30+2*n)
-Bpawn3= (30+3*n, 30+2*n)
-Bpawn4= (30+4*n, 30+2*n)
-Bpawn5= (30+5*n, 30+2*n)
-Bpawn6= (30+6*n, 30+2*n)
-Bpawn7= (30+7*n, 30+2*n)
-Bpawn8= (30+8*n, 30+2*n)
+
+#Liste med svarts posisjoner på brettet
+Bliste = [Brook1pos, Brook2pos, Bhorse1pos, Bhorse2pos, Bbishop1pos, Bbishop2pos, BqueenPos, BkingPos,
+Bpawn1, Bpawn2, Bpawn3, Bpawn4, Bpawn5, Bpawn6, Bpawn7, Bpawn8]
+
+
 
 
 def Chessboard(screen):
@@ -199,88 +189,88 @@ def white_pieces(screen):
     #white rook 1
     White_rook1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_tårn.png")
     White_rook1 = pygame.transform.scale(White_rook1, (n, n))
-    White_rook1Pos= screen.blit(White_rook1, Wrook1pos)
+    White_rook1Pos= screen.blit(White_rook1, Hvitliste[0])
 
     #white rook 2
     White_rook2 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_tårn.png")
     White_rook2 = pygame.transform.scale(White_rook2, (n, n))
-    White_rook2Pos= screen.blit(White_rook2, Wrook2pos)
+    White_rook2Pos= screen.blit(White_rook2, Hvitliste[1])
 
     #White horse 1
     White_horse1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_hest.png")
     White_horse1 = pygame.transform.scale(White_horse1, (n, n))
-    White_horse1Pos= screen.blit(White_horse1, Whorse1pos)
+    White_horse1Pos= screen.blit(White_horse1, Hvitliste[2])
 
     #White horse 2
     White_horse2 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_hest.png")
     White_horse2 = pygame.transform.scale(White_horse2, (n, n))
-    White_horse2Pos= screen.blit(White_horse2, Whorse2pos)
+    White_horse2Pos= screen.blit(White_horse2, Hvitliste[3])
 
     #White bishop 1
     White_bishop1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_biskop.png")
     White_bishop1 = pygame.transform.scale(White_bishop1, (n, n))
-    White_bishop1Pos= screen.blit(White_bishop1, Wbishop1pos)
+    White_bishop1Pos= screen.blit(White_bishop1, Hvitliste[4])
 
     #White bishop 2
     White_bishop2 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_biskop.png")
     White_bishop2 = pygame.transform.scale(White_bishop2, (n, n))
-    White_bishop2Pos= screen.blit(White_bishop2, Wbishop2pos)
+    White_bishop2Pos= screen.blit(White_bishop2, Hvitliste[5])
 
     #White queen
     White_queen = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_dronning.png")
     White_queen = pygame.transform.scale(White_queen, (n, n))
-    White_queenPos= screen.blit(White_queen, WqueenPos)
+    White_queenPos= screen.blit(White_queen, Hvitliste[6])
 
     #White king
     White_king = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_konge.png")
     White_king = pygame.transform.scale(White_king, (n, n))
-    White_kingPos= screen.blit(White_king, WkingPos)
+    White_kingPos= screen.blit(White_king, Hvitliste[7])
     
 
     #White pawn 1
     White_pawn1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_bonde.png")
     White_pawn1 = pygame.transform.scale(White_pawn1, (n, n))
-    White_pawn1Pos= screen.blit(White_pawn1, Wpawn1)
+    White_pawn1Pos= screen.blit(White_pawn1, Hvitliste[8])
     
    #White pawn 2
     White_pawn2 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_bonde.png")
     White_pawn2 = pygame.transform.scale(White_pawn2, (n, n))
-    White_pawn2Pos= screen.blit(White_pawn2, Wpawn2)
+    White_pawn2Pos= screen.blit(White_pawn2, Hvitliste[9])
     
 
     #White pawn 3
     White_pawn3 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_bonde.png")
     White_pawn3 = pygame.transform.scale(White_pawn3, (n, n))
-    White_pawn3Pos= screen.blit(White_pawn3, Wpawn3)
+    White_pawn3Pos= screen.blit(White_pawn3, Hvitliste[10])
 
     #White pawn 4
     White_pawn4 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_bonde.png")
     White_pawn4 = pygame.transform.scale(White_pawn4, (n, n))
-    White_pawn4Pos= screen.blit(White_pawn4, Wpawn4)
+    White_pawn4Pos= screen.blit(White_pawn4, Hvitliste[11])
 
     #White pawn 5
     White_pawn5 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_bonde.png")
     White_pawn5 = pygame.transform.scale(White_pawn5, (n, n))
-    White_pawn5Pos= screen.blit(White_pawn5, Wpawn5)
+    White_pawn5Pos= screen.blit(White_pawn5, Hvitliste[12])
 
     #White pawn 6
     White_pawn6 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_bonde.png")
     White_pawn6 = pygame.transform.scale(White_pawn6, (n, n))
-    White_pawn6Pos= screen.blit(White_pawn6, Wpawn6)
+    White_pawn6Pos= screen.blit(White_pawn6, Hvitliste[13])
 
     #White pawn 7
     White_pawn7 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_bonde.png")
     White_pawn7 = pygame.transform.scale(White_pawn7, (n, n))
-    White_pawn7Pos= screen.blit(White_pawn7, Wpawn7)
+    White_pawn7Pos= screen.blit(White_pawn7, Hvitliste[14])
 
     #White pawn 8
     White_pawn8 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Hvit_bonde.png")
     White_pawn8 = pygame.transform.scale(White_pawn8, (n, n))
-    White_pawn8Pos= screen.blit(White_pawn8, Wpawn8)
+    White_pawn8Pos= screen.blit(White_pawn8, Hvitliste[15])
 
 
-    piecelist = [White_rook1Pos, White_rook2Pos, White_horse1Pos, White_pawn8Pos, White_pawn7Pos, White_pawn6Pos, White_pawn5Pos, White_pawn4Pos
-    , White_pawn3Pos, White_pawn2Pos, White_pawn1Pos, White_horse2Pos, White_bishop1Pos, White_bishop2Pos, White_kingPos, White_queenPos]
+    piecelist = [White_rook1Pos, White_rook2Pos, White_horse1Pos, White_horse2Pos,  White_bishop1Pos, White_bishop2Pos, 
+    White_queenPos, White_kingPos, White_pawn1Pos, White_pawn2Pos, White_pawn3Pos, White_pawn4Pos, White_pawn5Pos, White_pawn6Pos, White_pawn7Pos, White_pawn8Pos]
     return piecelist 
 
 
@@ -291,88 +281,89 @@ def black_pieces(screen):
     #black rook 1
     Black_rook1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_tårn.png")
     Black_rook1 = pygame.transform.scale(Black_rook1, (n, n))
-    Black_rook1Pos= screen.blit(Black_rook1, Brook1pos)
+    Black_rook1Pos= screen.blit(Black_rook1, Bliste[0])
 
     #black rook 2
     Black_rook2 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_tårn.png")
     Black_rook2 = pygame.transform.scale(Black_rook2, (n, n))
-    Black_rook2Pos= screen.blit(Black_rook2, Brook2pos)
+    Black_rook2Pos= screen.blit(Black_rook2, Bliste[1])
 
     #black horse 1
     Black_horse1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_hest.png")
     Black_horse1 = pygame.transform.scale(Black_horse1, (n, n))
-    Black_horse1Pos= screen.blit(Black_horse1, Bhorse1pos)
+    Black_horse1Pos= screen.blit(Black_horse1, Bliste[2])
 
     #black horse 2
     Black_horse2 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_hest.png")
     Black_horse2 = pygame.transform.scale(Black_horse2, (n, n))
-    Black_horse2Pos= screen.blit(Black_horse2, Bhorse2pos)
+    Black_horse2Pos= screen.blit(Black_horse2, Bliste[3])
 
     #black bishop 1
     Black_bishop1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_biskop.png")
     Black_bishop1 = pygame.transform.scale(Black_bishop1, (n, n))
-    Black_bishop1Pos= screen.blit(Black_bishop1, Bbishop1pos)
+    Black_bishop1Pos= screen.blit(Black_bishop1, Bliste[4])
 
     #black bishop 2
     Black_bishop2 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_biskop.png")
     Black_bishop2 = pygame.transform.scale(Black_bishop2, (n, n))
-    Black_bishop2Pos= screen.blit(Black_bishop2, Bbishop2pos)
+    Black_bishop2Pos= screen.blit(Black_bishop2, Bliste[5])
 
     #black queen
     Black_queen = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_dronning.png")
     Black_queen = pygame.transform.scale(Black_queen, (n, n))
-    Black_queenPos= screen.blit(Black_queen, BqueenPos)
+    Black_queenPos= screen.blit(Black_queen, Bliste[6])
 
     #black king
     Black_king = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_konge.png")
     Black_king = pygame.transform.scale(Black_king, (n, n))
-    Black_kingPos= screen.blit(Black_king, BkingPos)
+    Black_kingPos= screen.blit(Black_king, Bliste[7])
 
     #black pawn 1
     Black_pawn1 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn1 = pygame.transform.scale(Black_pawn1, (n, n))
-    Black_pawn1Pos= screen.blit(Black_pawn1, Bpawn1)
+    Black_pawn1Pos= screen.blit(Black_pawn1, Bliste[8])
 
     #black pawn 2
     Black_pawn2 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn2 = pygame.transform.scale(Black_pawn2, (n, n))
-    Black_pawn2Pos= screen.blit(Black_pawn1, Bpawn2)
+    Black_pawn2Pos= screen.blit(Black_pawn1, Bliste[9])
 
     #black pawn 3
     Black_pawn3 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn3 = pygame.transform.scale(Black_pawn1, (n, n))
-    Black_pawn3Pos= screen.blit(Black_pawn3, Bpawn3)
+    Black_pawn3Pos= screen.blit(Black_pawn3, Bliste[10])
 
     #black pawn 4
     Black_pawn4 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn4 = pygame.transform.scale(Black_pawn1, (n, n))
-    Black_pawn4Pos= screen.blit(Black_pawn4, Bpawn4)
+    Black_pawn4Pos= screen.blit(Black_pawn4, Bliste[11])
 
     #black pawn 5
     Black_pawn5 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn5 = pygame.transform.scale(Black_pawn1, (n, n))
-    Black_pawn5Pos= screen.blit(Black_pawn5, Bpawn5)
+    Black_pawn5Pos= screen.blit(Black_pawn5, Bliste[12])
 
     #black pawn 6
     Black_pawn6 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn6 = pygame.transform.scale(Black_pawn1, (n, n))
-    Black_pawn6Pos= screen.blit(Black_pawn6, Bpawn6)
+    Black_pawn6Pos= screen.blit(Black_pawn6, Bliste[13])
 
     #black pawn 7
     Black_pawn7 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn7 = pygame.transform.scale(Black_pawn7, (n, n))
-    Black_pawn7Pos= screen.blit(Black_pawn7, Bpawn7)
+    Black_pawn7Pos= screen.blit(Black_pawn7, Bliste[14])
 
     #black pawn 8
     Black_pawn8 = pygame.image.load(r"C:\Users\henri\Desktop\Chess.exe\Pieces\Svart_bonde.png")
     Black_pawn8 = pygame.transform.scale(Black_pawn8, (n, n))
-    Black_pawn8Pos= screen.blit(Black_pawn8, Bpawn8)
+    Black_pawn8Pos= screen.blit(Black_pawn8, Bliste[15])
 
-    piecelist = [Black_rook1Pos, Black_rook2Pos, Black_horse1Pos, Black_pawn8Pos, Black_pawn7Pos, Black_pawn6Pos, Black_pawn5Pos, Black_pawn4Pos
-    , Black_pawn3Pos, Black_pawn2Pos, Black_pawn1Pos, Black_horse2Pos, Black_bishop1Pos, Black_bishop2Pos, Black_kingPos, Black_queenPos]
+    piecelist = [Black_rook1Pos, Black_rook2Pos, Black_horse1Pos,  Black_horse2Pos, Black_bishop1Pos, Black_bishop2Pos, Black_queenPos, Black_kingPos, 
+    Black_pawn1Pos, Black_pawn2Pos, Black_pawn3Pos, Black_pawn4Pos, Black_pawn5Pos, Black_pawn6Pos, Black_pawn7Pos, Black_pawn8Pos]
     return piecelist 
 
-def HRepos(indeks):
+#Finner ut hvilken hvit brikke som ble trykt på, og hvor den ble trykt til
+def HRepos(indeks, turn):
     a=True
     while a:
         for something in pygame.event.get():
@@ -383,16 +374,48 @@ def HRepos(indeks):
                 papa = something.pos
                 for x in Chessboard(screen):
                     if x.collidepoint(papa):
-                        for y in Hvitliste:
-                            if y.collidepoint(i):
-                                y= x
+                        for i in white_pieces(screen):
+                            if i.collidepoint(papa):
+                                return turn
+                        Hvitliste[indeks]= x
+                        for y in black_pieces(screen):
+                            if y.collidepoint(papa):
+                                yndex= black_pieces(screen).index(y)
+                                Bliste[yndex]= (600,0)
                         Chessboard(screen)
                         white_pieces(screen)
                         black_pieces(screen)
                         pygame.display.flip()
-                        a=False
-             
+                        turn = 2
+                        return turn
 
+#Finner ut hvilken svart brikke som ble trykt på, og hvor den ble trykt til            
+def BRepos(indeks, turn):
+    a=True
+    while a:
+        for something in pygame.event.get():
+            if something.type == pygame.QUIT:
+                running = False
+                return running
+            elif something.type == pygame.MOUSEBUTTONDOWN:
+                papa = something.pos
+                for x in Chessboard(screen):
+                    if x.collidepoint(papa):
+                        for i in black_pieces(screen):
+                            if i.collidepoint(papa):
+                                return turn
+                        Bliste[indeks]= x
+                        for y in white_pieces(screen):
+                            if y.collidepoint(papa):
+                                yndex= white_pieces(screen).index(y)
+                                Hvitliste[yndex]= (600,0)     
+                        Chessboard(screen)
+                        black_pieces(screen)
+                        white_pieces(screen)
+                        pygame.display.flip()
+                        turn= 1
+                        return turn
+             
 
 pygame.init()
 
@@ -420,13 +443,14 @@ while running:
                 for i in white_pieces(screen):
                     if i.collidepoint(Lastclick):
                         indeks = white_pieces(screen).index(i)
-                        HRepos(indeks)
-                        turn=2
+                        turn = HRepos(indeks, turn)
+                        
             if turn ==2:
-                for x in black_pieces(screen):
-                    if x.collidepoint(Lastclick):
-                        Repos(i)
-                        turn=1
+                for i in black_pieces(screen):
+                    if i.collidepoint(Lastclick):
+                        indeks = black_pieces(screen).index(i)
+                        turn = BRepos(indeks, turn)
+                        
     
             
            

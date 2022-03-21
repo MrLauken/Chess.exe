@@ -1,8 +1,10 @@
 import pygame
+import math
 from pygame.locals import *
 n=43.5
 turn=1
 Lastclick= 0
+
 
 
 #initializerer poisisjon for hvite brikker
@@ -40,6 +42,9 @@ Bpawn5= (30+5*n, 30+2*n)
 Bpawn6= (30+6*n, 30+2*n)
 Bpawn7= (30+7*n, 30+2*n)
 Bpawn8= (30+8*n, 30+2*n)
+
+FEN = [Wrook1pos, Whorse1pos, Wbishop1pos, WqueenPos, WkingPos, Wbishop2pos, Whorse2pos, Wrook2pos, 
+Wpawn1, Wpawn2, Wpawn3, Wpawn4, Wpawn5, Wpawn6, Wpawn7, Wpawn8, 0, 0, 0, 0, 0, 0, 0, 0, ]
 
 #Liste med hvits posisjoner på brettet
 Hvitliste = [Wrook1pos, Wrook2pos, Whorse1pos, Whorse2pos, Wbishop1pos, Wbishop2pos, WqueenPos, WkingPos, Wpawn1, 
@@ -176,10 +181,12 @@ def Chessboard(screen):
     H = fontgrid.render('H', True, (164, 126, 115))
     display_surface.blit(H, (n*8+45, 10*n))
 
-    tiles = [a8,b8,c8,d8,e8,f8,g8,h8,a7,b7,c7,d7,e7,f7,g7,h7, a6,b6,c6,d6,e6,f6,g6,h6, a5,b5,c5,d5,e5,f5,g5,h5,
-    a4,b4,c4,d4,e4,f4,g4,h4, a3,b3,c3,d3,e3,f3,g3,h3,a2,b2,c2,d2,e2,f2,g2,h2,a1,b1,c1,d1,e1,f1,g1,h1]
+    tiles = [a1,b1,c1,d1,e1,f1,g1,h1,a2,b2,c2,d2,e2,f2,g2,h2, a3,b3,c3,d3,e3,f3,g3,h3,a4,b4,c4,d4,e4,f4,g4,h4,
+    a5,b5,c5,d5,e5,f5,g5,h5, a6,b6,c6,d6,e6,f6,g6,h6,a7,b7,c7,d7,e7,f7,g7,h7,a8,b8,c8,d8,e8,f8,g8,h8]
+    
     return tiles
 
+  
 
 
 
@@ -271,6 +278,7 @@ def white_pieces(screen):
 
     piecelist = [White_rook1Pos, White_rook2Pos, White_horse1Pos, White_horse2Pos,  White_bishop1Pos, White_bishop2Pos, 
     White_queenPos, White_kingPos, White_pawn1Pos, White_pawn2Pos, White_pawn3Pos, White_pawn4Pos, White_pawn5Pos, White_pawn6Pos, White_pawn7Pos, White_pawn8Pos]
+
     return piecelist 
 
 
@@ -362,6 +370,18 @@ def black_pieces(screen):
     Black_pawn1Pos, Black_pawn2Pos, Black_pawn3Pos, Black_pawn4Pos, Black_pawn5Pos, Black_pawn6Pos, Black_pawn7Pos, Black_pawn8Pos]
     return piecelist 
 
+def FEN():
+    q=0
+    for x in Chessboard(screen):
+        for y in white_pieces(screen):
+            posT = x.get_rect()
+            if y.collidepoint(posT):
+                FEN[q] = y
+            else:
+                FEN[q] = 0
+            q+=1
+    print(FEN)
+
 #Finner ut hvilken hvit brikke som ble trykt på, og hvor den ble trykt til
 def HRepos(indeks, turn):
     a=True
@@ -417,6 +437,8 @@ def BRepos(indeks, turn):
                         return turn
              
 
+
+    
 pygame.init()
 
 screen = pygame.display.set_mode([500, 500])
@@ -431,6 +453,7 @@ Chessboard(screen)
 white_pieces(screen)
 black_pieces(screen)
 pygame.display.flip()
+FEN()
 while running:
     for event in pygame.event.get():
 

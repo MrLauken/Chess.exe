@@ -1,6 +1,7 @@
 import pygame
-import math
 from pygame.locals import *
+import chess
+
 n=43.5
 turn=1
 Lastclick= 0
@@ -43,8 +44,6 @@ Bpawn6= (30+6*n, 30+2*n)
 Bpawn7= (30+7*n, 30+2*n)
 Bpawn8= (30+8*n, 30+2*n)
 
-FEN = [Wrook1pos, Whorse1pos, Wbishop1pos, WqueenPos, WkingPos, Wbishop2pos, Whorse2pos, Wrook2pos, 
-Wpawn1, Wpawn2, Wpawn3, Wpawn4, Wpawn5, Wpawn6, Wpawn7, Wpawn8, 0, 0, 0, 0, 0, 0, 0, 0, ]
 
 #Liste med hvits posisjoner på brettet
 Hvitliste = [Wrook1pos, Wrook2pos, Whorse1pos, Whorse2pos, Wbishop1pos, Wbishop2pos, WqueenPos, WkingPos, Wpawn1, 
@@ -62,6 +61,59 @@ def Chessboard(screen):
     n=43.5
     screen.fill((255, 255, 255))
     pygame.draw.rect(screen, (245, 220, 170), pygame.Rect(30, 30, 435, 435))
+    Stat = tiles(None)
+    #Lines
+    pygame.draw.line(screen, (164, 126, 115), (30+n,30+n), (30+n,30+9*n), 4)
+    pygame.draw.line(screen, (164, 126, 115), (30+n,30+n), (30+9*n,30+n), 4)
+    pygame.draw.line(screen, (164, 126, 115), (30+9*n,30+n), (30+9*n,30+9*n), 4)
+    pygame.draw.line(screen, (164, 126, 115), (30+n,30+9*n), (30+9*n,30+9*n), 4)
+    #Text
+    display_surface = screen
+    font = pygame.font.Font('freesansbold.ttf', 32)
+    text = font.render('Chess.exe', True, (164, 126, 115))
+    display_surface.blit(text, (35+3*n, 35))
+    #Grid numbers
+    fontgrid = pygame.font.Font('freesansbold.ttf', 18)
+    One = fontgrid.render('1', True, (164, 126, 115))   
+    display_surface.blit(One, (n+15, 5+9*n))
+    Two = fontgrid.render('2', True, (164, 126, 115))
+    display_surface.blit(Two, (n+15, 5+8*n))
+    Three = fontgrid.render('3', True, (164, 126, 115))
+    display_surface.blit(Three, (n+15, 5+7*n))
+    Four = fontgrid.render('4', True, (164, 126, 115))
+    display_surface.blit(Four, (n+15, 5+6*n))
+    Five = fontgrid.render('5', True, (164, 126, 115))
+    display_surface.blit(Five, (n+15, 5+5*n))
+    Six = fontgrid.render('6', True, (164, 126, 115))
+    display_surface.blit(Six, (n+15, 5+4*n))
+    Seven = fontgrid.render('7', True, (164, 126, 115))
+    display_surface.blit(Seven, (n+15, 5+3*n))
+    Eight = fontgrid.render('8', True, (164, 126, 115))
+    display_surface.blit(Eight, (n+15, 5+2*n))
+    #Grid letters
+    fontgrid = pygame.font.Font('freesansbold.ttf', 18)
+    A = fontgrid.render('A', True, (164, 126, 115))   
+    display_surface.blit(A, (n+45, 10*n))
+    B = fontgrid.render('B', True, (164, 126, 115))
+    display_surface.blit(B, (n*2+45, 10*n))
+    C = fontgrid.render('C', True, (164, 126, 115))
+    display_surface.blit(C, (n*3+45, 10*n))
+    D = fontgrid.render('D', True, (164, 126, 115))
+    display_surface.blit(D, (n*4+45, 10*n))
+    E = fontgrid.render('E', True, (164, 126, 115))
+    display_surface.blit(E, (n*5+45, 10*n))
+    F = fontgrid.render('F', True, (164, 126, 115))
+    display_surface.blit(F, (n*6+45, 10*n))
+    G = fontgrid.render('G', True, (164, 126, 115))
+    display_surface.blit(G, (n*7+45, 10*n))
+    H = fontgrid.render('H', True, (164, 126, 115))
+    display_surface.blit(H, (n*8+45, 10*n))
+
+    return Stat
+
+    
+
+def tiles(pos):
     #Rad 8
     a8= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+n, 30+n, n, n))
     b8= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+2*n, 30+n, n, n))
@@ -134,57 +186,21 @@ def Chessboard(screen):
     f1= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+6*n, 30+8*n, n, n))
     g1= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+7*n, 30+8*n, n, n))
     h1= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+8*n, 30+8*n, n, n))
-    #Lines
-    pygame.draw.line(screen, (164, 126, 115), (30+n,30+n), (30+n,30+9*n), 4)
-    pygame.draw.line(screen, (164, 126, 115), (30+n,30+n), (30+9*n,30+n), 4)
-    pygame.draw.line(screen, (164, 126, 115), (30+9*n,30+n), (30+9*n,30+9*n), 4)
-    pygame.draw.line(screen, (164, 126, 115), (30+n,30+9*n), (30+9*n,30+9*n), 4)
-    #Text
-    display_surface = screen
-    font = pygame.font.Font('freesansbold.ttf', 32)
-    text = font.render('Chess.exe', True, (164, 126, 115))
-    display_surface.blit(text, (35+3*n, 35))
-    #Grid numbers
-    fontgrid = pygame.font.Font('freesansbold.ttf', 18)
-    One = fontgrid.render('1', True, (164, 126, 115))   
-    display_surface.blit(One, (n+15, 5+9*n))
-    Two = fontgrid.render('2', True, (164, 126, 115))
-    display_surface.blit(Two, (n+15, 5+8*n))
-    Three = fontgrid.render('3', True, (164, 126, 115))
-    display_surface.blit(Three, (n+15, 5+7*n))
-    Four = fontgrid.render('4', True, (164, 126, 115))
-    display_surface.blit(Four, (n+15, 5+6*n))
-    Five = fontgrid.render('5', True, (164, 126, 115))
-    display_surface.blit(Five, (n+15, 5+5*n))
-    Six = fontgrid.render('6', True, (164, 126, 115))
-    display_surface.blit(Six, (n+15, 5+4*n))
-    Seven = fontgrid.render('7', True, (164, 126, 115))
-    display_surface.blit(Seven, (n+15, 5+3*n))
-    Eight = fontgrid.render('8', True, (164, 126, 115))
-    display_surface.blit(Eight, (n+15, 5+2*n))
-    #Grid letters
-    fontgrid = pygame.font.Font('freesansbold.ttf', 18)
-    A = fontgrid.render('A', True, (164, 126, 115))   
-    display_surface.blit(A, (n+45, 10*n))
-    B = fontgrid.render('B', True, (164, 126, 115))
-    display_surface.blit(B, (n*2+45, 10*n))
-    C = fontgrid.render('C', True, (164, 126, 115))
-    display_surface.blit(C, (n*3+45, 10*n))
-    D = fontgrid.render('D', True, (164, 126, 115))
-    display_surface.blit(D, (n*4+45, 10*n))
-    E = fontgrid.render('E', True, (164, 126, 115))
-    display_surface.blit(E, (n*5+45, 10*n))
-    F = fontgrid.render('F', True, (164, 126, 115))
-    display_surface.blit(F, (n*6+45, 10*n))
-    G = fontgrid.render('G', True, (164, 126, 115))
-    display_surface.blit(G, (n*7+45, 10*n))
-    H = fontgrid.render('H', True, (164, 126, 115))
-    display_surface.blit(H, (n*8+45, 10*n))
 
     tiles = [a1,b1,c1,d1,e1,f1,g1,h1,a2,b2,c2,d2,e2,f2,g2,h2, a3,b3,c3,d3,e3,f3,g3,h3,a4,b4,c4,d4,e4,f4,g4,h4,
     a5,b5,c5,d5,e5,f5,g5,h5, a6,b6,c6,d6,e6,f6,g6,h6,a7,b7,c7,d7,e7,f7,g7,h7,a8,b8,c8,d8,e8,f8,g8,h8]
+
+    tile_names = ['a1','b1','c1','d1','e1','f1','g1','h1','a2','b2','c2','d2','e2','f2','g2','h2', 'a3','b3','c3','d3','e3','f3','g3','h3','a4','b4','c4','d4','e4','f4','g4','h4',
+    'a5','b5','c5','d5','e5','f5','g5','h5', 'a6','b6','c6','d6','e6','f6','g6','h6','a7','b7','c7','d7','e7','f7','g7','h7','a8','b8','c8','d8','e8','f8','g8','h8']
+    if pos != None:
+        for z in tiles:
+            if z.collidepoint(pos):
+                return tile_names[tiles.index(z)]
+    else:
+        return tiles
+
     
-    return tiles
+
 
   
 
@@ -370,20 +386,9 @@ def black_pieces(screen):
     Black_pawn1Pos, Black_pawn2Pos, Black_pawn3Pos, Black_pawn4Pos, Black_pawn5Pos, Black_pawn6Pos, Black_pawn7Pos, Black_pawn8Pos]
     return piecelist 
 
-def FEN():
-    q=0
-    for x in Chessboard(screen):
-        for y in white_pieces(screen):
-            posT = x.get_rect()
-            if y.collidepoint(posT):
-                FEN[q] = y
-            else:
-                FEN[q] = 0
-            q+=1
-    print(FEN)
 
 #Finner ut hvilken hvit brikke som ble trykt på, og hvor den ble trykt til
-def HRepos(indeks, turn):
+def HRepos(indeks, turn, pos1):
     a=True
     while a:
         for something in pygame.event.get():
@@ -392,6 +397,13 @@ def HRepos(indeks, turn):
                 return running
             elif something.type == pygame.MOUSEBUTTONDOWN:
                 papa = something.pos
+                pos2 = tiles(papa)
+                move = str(pos1)+str(pos2)
+                try:
+                    board.push_uci(move)
+                except (chess.IllegalMoveError, ValueError):
+                    print("Ulovlig trekk")
+                    return 1
                 for x in Chessboard(screen):
                     if x.collidepoint(papa):
                         for i in white_pieces(screen):
@@ -410,7 +422,7 @@ def HRepos(indeks, turn):
                         return turn
 
 #Finner ut hvilken svart brikke som ble trykt på, og hvor den ble trykt til            
-def BRepos(indeks, turn):
+def BRepos(indeks, turn, pos1):
     a=True
     while a:
         for something in pygame.event.get():
@@ -419,6 +431,13 @@ def BRepos(indeks, turn):
                 return running
             elif something.type == pygame.MOUSEBUTTONDOWN:
                 papa = something.pos
+                pos2 = tiles(papa)
+                move = str(pos1)+str(pos2)
+                try:
+                    board.push_uci(move)
+                except (chess.IllegalMoveError, ValueError):
+                    print("Ulovlig trekk")
+                    return 2
                 for x in Chessboard(screen):
                     if x.collidepoint(papa):
                         for i in black_pieces(screen):
@@ -432,6 +451,7 @@ def BRepos(indeks, turn):
                         Chessboard(screen)
                         black_pieces(screen)
                         white_pieces(screen)
+                        pos2 = papa
                         pygame.display.flip()
                         turn= 1
                         return turn
@@ -444,16 +464,12 @@ pygame.init()
 screen = pygame.display.set_mode([500, 500])
 
 pygame.display.set_caption('Chess.exe')
-
-
-
 running = True
-
+board = chess.Board()
 Chessboard(screen)
 white_pieces(screen)
 black_pieces(screen)
 pygame.display.flip()
-FEN()
 while running:
     for event in pygame.event.get():
 
@@ -462,17 +478,19 @@ while running:
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             Lastclick = event.pos
+            pos1=tiles(Lastclick)
             if turn ==1:
                 for i in white_pieces(screen):
                     if i.collidepoint(Lastclick):
                         indeks = white_pieces(screen).index(i)
-                        turn = HRepos(indeks, turn)
+                        turn = HRepos(indeks, turn, pos1)
+
                         
             if turn ==2:
                 for i in black_pieces(screen):
                     if i.collidepoint(Lastclick):
                         indeks = black_pieces(screen).index(i)
-                        turn = BRepos(indeks, turn)
+                        turn = BRepos(indeks, turn, pos1)
                         
     
             

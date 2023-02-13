@@ -2,13 +2,8 @@ import pygame
 from pygame.locals import *
 import chess
 
+screen = pygame.display.set_mode([500, 500])
 n=43.5
-turn=1
-Lastclick= 0
-
-
-
-#initializerer poisisjon for hvite brikker
 Wrook1pos = (30+n, 30+8*n)
 Wrook2pos = (30+8*n, 30+8*n)
 Whorse1pos = (30+2*n, 30+8*n)
@@ -53,7 +48,6 @@ Wpawn2, Wpawn3, Wpawn4, Wpawn5, Wpawn6, Wpawn7, Wpawn8]
 #Liste med svarts posisjoner på brettet
 Bliste = [Brook1pos, Brook2pos, Bhorse1pos, Bhorse2pos, Bbishop1pos, Bbishop2pos, BqueenPos, BkingPos,
 Bpawn1, Bpawn2, Bpawn3, Bpawn4, Bpawn5, Bpawn6, Bpawn7, Bpawn8]
-
 
 
 
@@ -108,12 +102,10 @@ def Chessboard(screen):
     display_surface.blit(G, (n*7+45, 10*n))
     H = fontgrid.render('H', True, (164, 126, 115))
     display_surface.blit(H, (n*8+45, 10*n))
-
     return Stat
 
-    
-
 def tiles(pos):
+    n=43.5
     #Rad 8
     a8= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+n, 30+n, n, n))
     b8= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+2*n, 30+n, n, n))
@@ -200,12 +192,6 @@ def tiles(pos):
         return tiles
 
     
-
-
-  
-
-
-
 def white_pieces(screen):
     n=43.5
     
@@ -387,8 +373,9 @@ def black_pieces(screen):
     return piecelist 
 
 
+
 #Finner ut hvilken hvit brikke som ble trykt på, og hvor den ble trykt til
-def HRepos(indeks, turn, pos1):
+def HRepos(indeks, turn, pos1, board):
     a=True
     while a:
         for something in pygame.event.get():
@@ -401,6 +388,7 @@ def HRepos(indeks, turn, pos1):
                 move = str(pos1)+str(pos2)
                 try:
                     board.push_uci(move)
+                    print(move)
                 except (chess.IllegalMoveError, ValueError):
                     print("Ulovlig trekk")
                     return 1
@@ -422,7 +410,7 @@ def HRepos(indeks, turn, pos1):
                         return turn
 
 #Finner ut hvilken svart brikke som ble trykt på, og hvor den ble trykt til            
-def BRepos(indeks, turn, pos1):
+def BRepos(indeks, turn, pos1, board):
     a=True
     while a:
         for something in pygame.event.get():
@@ -435,6 +423,7 @@ def BRepos(indeks, turn, pos1):
                 move = str(pos1)+str(pos2)
                 try:
                     board.push_uci(move)
+                    print(move)
                 except (chess.IllegalMoveError, ValueError):
                     print("Ulovlig trekk")
                     return 2
@@ -456,46 +445,3 @@ def BRepos(indeks, turn, pos1):
                         turn= 1
                         return turn
              
-
-
-    
-pygame.init()
-
-screen = pygame.display.set_mode([500, 500])
-
-pygame.display.set_caption('Chess.exe')
-running = True
-board = chess.Board()
-Chessboard(screen)
-white_pieces(screen)
-black_pieces(screen)
-pygame.display.flip()
-while running:
-    for event in pygame.event.get():
-
-        if event.type == pygame.QUIT:
-            running = False
-
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            Lastclick = event.pos
-            pos1=tiles(Lastclick)
-            if turn ==1:
-                for i in white_pieces(screen):
-                    if i.collidepoint(Lastclick):
-                        indeks = white_pieces(screen).index(i)
-                        turn = HRepos(indeks, turn, pos1)
-
-                        
-            if turn ==2:
-                for i in black_pieces(screen):
-                    if i.collidepoint(Lastclick):
-                        indeks = black_pieces(screen).index(i)
-                        turn = BRepos(indeks, turn, pos1)
-                        
-    
-            
-           
-        
-
-
-pygame.quit()

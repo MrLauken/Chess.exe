@@ -55,7 +55,7 @@ def Chessboard(screen):
     n=43.5
     screen.fill((255, 255, 255))
     pygame.draw.rect(screen, (245, 220, 170), pygame.Rect(30, 30, 435, 435))
-    Stat = tiles(None)
+    Stat = tiles(None).values()
     #Lines
     pygame.draw.line(screen, (164, 126, 115), (30+n,30+n), (30+n,30+9*n), 4)
     pygame.draw.line(screen, (164, 126, 115), (30+n,30+n), (30+9*n,30+n), 4)
@@ -179,15 +179,24 @@ def tiles(pos):
     g1= pygame.draw.rect(screen, (164, 126, 115), pygame.Rect(30+7*n, 30+8*n, n, n))
     h1= pygame.draw.rect(screen, (240, 215, 185), pygame.Rect(30+8*n, 30+8*n, n, n))
 
-    tiles = [a1,b1,c1,d1,e1,f1,g1,h1,a2,b2,c2,d2,e2,f2,g2,h2, a3,b3,c3,d3,e3,f3,g3,h3,a4,b4,c4,d4,e4,f4,g4,h4,
-    a5,b5,c5,d5,e5,f5,g5,h5, a6,b6,c6,d6,e6,f6,g6,h6,a7,b7,c7,d7,e7,f7,g7,h7,a8,b8,c8,d8,e8,f8,g8,h8]
+    tiles = {"a1": a1,"b1":b1,"c1": c1, "d1" : d1, "e1" : e1,"f1":f1,"g1":g1,"h1":h1,
+    "a2": a2,"b2":b2,"c2": c2, "d2" : d2, "e2" : e2,"f1":f2,"g1":g2,"h1":h2,
+    "a3": a3,"b3":b3,"c3": c3, "d3" : d3, "e3" : e3,"f1":f3,"g3":g3,"h3":h3,
+    "a4": a4,"b4":b4,"c4": c4, "d4" : d4, "e4" : e4,"f4":f4,"g4":g4,"h4":h4,
+    "a5": a5,"b5":b5,"c5": c5, "d5" : d5, "e5" : e5,"f5":f5,"g5":g5,"h5":h5,
+    "a6": a6,"b6":b6,"c6": c6, "d6" : d6, "e6" : e6,"f6":f6,"g6":g6,"h6":h6,
+    "a7": a7,"b7":b7,"c7": c7, "d7" : d7, "e7" : e7,"f7":f7,"g7":g7,"h7":h7,
+    "a8": a8,"b8":b8,"c8": c8, "d8" : d8, "e8" : e8,"f8":f8,"g8":g8,"h8":h8} 
+     
+     
+     
+    """a2,b2,c2,d2,e2,f2,g2,h2, a3,b3,c3,d3,e3,f3,g3,h3,a4,b4,c4,d4,e4,f4,g4,h4,
+    a5,b5,c5,d5,e5,f5,g5,h5, a6,b6,c6,d6,e6,f6,g6,h6,a7,b7,c7,d7,e7,f7,g7,h7,a8,b8,c8,d8,e8,f8,g8,h8]"""
 
-    tile_names = ['a1','b1','c1','d1','e1','f1','g1','h1','a2','b2','c2','d2','e2','f2','g2','h2', 'a3','b3','c3','d3','e3','f3','g3','h3','a4','b4','c4','d4','e4','f4','g4','h4',
-    'a5','b5','c5','d5','e5','f5','g5','h5', 'a6','b6','c6','d6','e6','f6','g6','h6','a7','b7','c7','d7','e7','f7','g7','h7','a8','b8','c8','d8','e8','f8','g8','h8']
     if pos != None:
-        for z in tiles:
+        for z in tiles.values():
             if z.collidepoint(pos):
-                return tile_names[tiles.index(z)]
+                return list(tiles.keys())[list(tiles.values()).index(z)]
     else:
         return tiles
 
@@ -391,6 +400,7 @@ def HRepos(indeks, turn, pos1, board):
                     print(move)
                 except (chess.IllegalMoveError, ValueError):
                     print("Ulovlig trekk")
+                    print(move)
                     return 1
                 for x in Chessboard(screen):
                     if x.collidepoint(papa):
@@ -426,6 +436,7 @@ def BRepos(indeks, turn, pos1, board):
                     print(move)
                 except (chess.IllegalMoveError, ValueError):
                     print("Ulovlig trekk")
+                    print(move)
                     return 2
                 for x in Chessboard(screen):
                     if x.collidepoint(papa):
@@ -444,4 +455,71 @@ def BRepos(indeks, turn, pos1, board):
                         pygame.display.flip()
                         turn= 1
                         return turn
-             
+
+def BotMoveWhite(turn, pos, board):
+    pos1= pos[:2]
+    pos2= pos[2:]
+    try:
+        board.push_uci(pos)
+        print(pos)
+    except (chess.IllegalMoveError, ValueError):
+        print("Ulovlig trekk")
+        print(pos)
+        return 2
+    
+    pos1xyz = tiles(None).get(pos1)
+    for i in white_pieces(screen):
+        if i.colliderect(pos1xyz):
+            indeks = white_pieces(screen).index(i)
+            for x in Chessboard(screen):
+                pos2xyz = tiles(None).get(pos2)
+                if x.colliderect(pos2xyz):
+                    for i in white_pieces(screen):
+                        if i.colliderect(pos2xyz):
+                            return turn
+                    Hvitliste[indeks]= x
+                    for y in black_pieces(screen):
+                        if y.colliderect(pos2xyz):
+                            yndex= black_pieces(screen).index(y)
+                            Bliste[yndex]= (600,0)     
+                    Chessboard(screen)
+                    black_pieces(screen)
+                    white_pieces(screen)
+                    pygame.display.flip()
+                    turn= 2
+                    return turn
+
+def BotMoveBlack(turn, pos, board):
+    pos1= pos[:2]
+    pos2= pos[2:]
+    try:
+        board.push_uci(pos)
+        print(pos)
+    except (chess.IllegalMoveError, ValueError):
+        print("Ulovlig trekk")
+        print(pos)
+        return 2
+    
+    pos1xyz = tiles(None).get(pos1)
+    for i in black_pieces(screen):
+        if i.colliderect(pos1xyz):
+            indeks = black_pieces(screen).index(i)
+            for x in Chessboard(screen):
+                pos2xyz = tiles(None).get(pos2)
+                if x.colliderect(pos2xyz):
+                    for i in black_pieces(screen):
+                        if i.colliderect(pos2xyz):
+                            return turn
+                    Bliste[indeks]= x
+                    for y in white_pieces(screen):
+                        if y.colliderect(pos2xyz):
+                            yndex= white_pieces(screen).index(y)
+                            Hvitliste[yndex]= (600,0)     
+                    Chessboard(screen)
+                    black_pieces(screen)
+                    white_pieces(screen)
+                    pygame.display.flip()
+                    turn= 1
+                    return turn
+                
+    

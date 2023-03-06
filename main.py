@@ -21,6 +21,7 @@ def main():
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
+                get_lcz_move(board, True)
                 running = False
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -30,19 +31,21 @@ def main():
 
                 if turn ==1:
                     if Ai == "White":
-                        print(get_lcz_move(board))
-                        turn = 2
+                        pos = str(get_lcz_move(board, False))
+                        turn = BotMoveWhite(turn, pos, board)
                     else:
                         for i in white_pieces(screen):
                             if i.collidepoint(Lastclick):
                                 indeks = white_pieces(screen).index(i)
                                 turn = HRepos(indeks, turn, pos1, board)
+                                
 
                             
                 if turn ==2:
                     if Ai == "Black":
-                        print(get_lcz_move(board))
-                        turn = 1
+                        pos = str(get_lcz_move(board, False))
+                        turn = BotMoveBlack(turn, pos, board)
+                        
                     else: 
                         for i in black_pieces(screen):
                             if i.collidepoint(Lastclick):

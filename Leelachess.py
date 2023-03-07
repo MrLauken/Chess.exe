@@ -4,11 +4,10 @@ from pygame.locals import *
 
 def get_lcz_move(board, Quit):
     engine = chess.engine.SimpleEngine.popen_uci(r"C:\Users\henri\Desktop\Chess.exe\lc0-v0.29.0-windows-gpu-nvidia-cuda/lc0")  
-    if Quit == False:
-        result = engine.play(board, chess.engine.Limit(time=2.0))  # 2-second time limit
-        return result.move
-    else:
-        engine.quit()
+    result = engine.play(board, chess.engine.Limit(time=2.0))  # 2-second time limit
+    engine.quit()
+    return result.move
+        
 
 def layout(win1):
     win1.fill((245, 220, 170))

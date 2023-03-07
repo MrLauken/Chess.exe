@@ -21,12 +21,12 @@ def main():
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
-                get_lcz_move(board, True)
                 running = False
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 Lastclick = event.pos
                 pos1=tiles(Lastclick)
+                print(pos1)
 
 
                 if turn ==1:
@@ -57,4 +57,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 

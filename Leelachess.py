@@ -1,9 +1,13 @@
 import chess.engine
 import pygame
 from pygame.locals import *
+import os
 
-def get_lcz_move(board, Quit):
-    engine = chess.engine.SimpleEngine.popen_uci(r"C:\Users\henri\Desktop\Chess.exe\lc0-v0.29.0-windows-gpu-nvidia-cuda/lc0")  
+
+def get_lcz_move(board):
+    exe_path = os.path.dirname(os.path.abspath(__file__))
+    image_dir = os.path.join(exe_path, 'lc0')
+    engine = chess.engine.SimpleEngine.popen_uci(os.path.join(image_dir, 'lc0.exe'))  
     result = engine.play(board, chess.engine.Limit(time=2.0))  # 2-second time limit
     engine.quit()
     return result.move

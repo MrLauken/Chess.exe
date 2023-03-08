@@ -31,7 +31,7 @@ def main():
 
                 if turn ==1:
                     if Ai == "White":
-                        pos = str(get_lcz_move(board, False))
+                        pos = str(get_lcz_move(board))
                         turn = BotMoveWhite(turn, pos, board)
                     else:
                         for i in white_pieces(screen):
@@ -43,7 +43,7 @@ def main():
                             
                 if turn ==2:
                     if Ai == "Black":
-                        pos = str(get_lcz_move(board, False))
+                        pos = str(get_lcz_move(board))
                         turn = BotMoveBlack(turn, pos, board)
                         
                     else: 
